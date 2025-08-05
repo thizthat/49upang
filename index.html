@@ -5,127 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사구팡 - 추천 상품 확인</title>
     
-    <!-- 폰트 불러오기: 친근한 느낌의 Gaegu, 굵고 선명한 Noto Sans KR -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
 
     <style>
-        /* 기본 스타일 초기화 및 전체 디자인 설정 */
         html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            /* 로고의 녹색을 메인 배경색으로 사용 */
+            margin: 0; padding: 0; width: 100%; height: 100%;
             background-color: #0d5d37; 
             color: #ffffff;
-            /* 기본 폰트를 Gaegu로 설정 */
             font-family: 'Gaegu', sans-serif;
-            /* 콘텐츠를 화면 중앙에 배치 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
             text-align: center;
         }
 
-        /* 콘텐츠 전체를 감싸는 컨테이너 */
         .container {
-            display: flex;
-            flex-direction: column; /* 아이템을 세로로 정렬 */
-            align-items: center;
-            width: 90%; /* 모바일 화면 좌우 여백 확보 */
-            max-width: 400px; /* PC에서 너무 커지지 않게 제한 */
+            display: flex; flex-direction: column; align-items: center;
+            width: 90%; max-width: 400px;
         }
 
-      /* --- 로고 스타일 변경 --- */
-
-/* 1. 로고를 감싸는 원형 컨테이너(틀) 스타일 */
-.logo-container {
-    width: 180px;  /* 원의 크기 (너비) */
-    height: 180px; /* 원의 크기 (높이) - 너비와 똑같이 맞춰야 정원 */
-    border-radius: 50%; /* 이 속성이 모양을 원으로 만듭니다 */
-    background-color: #ffffff; /* 원의 배경색 (흰색) */
-    
-    /* 로고 이미지를 원의 정중앙에 배치하기 위한 설정 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-bottom: 2rem; /* 아래쪽 여백 */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 입체감을 주는 그림자 */
-    
-    /* 로고가 너무 커지는 것을 방지 (화면이 작아질 때 대비) */
-    max-width: 50vw;
-    max-height: 50vw;
-}
-
-/* 2. 컨테이너 안에 들어갈 실제 로고 이미지 스타일 */
-.logo-image {
-    width: 90%;  /* 원 크기의 90% 만큼 차지 (여백을 줌) */
-    height: auto; /* 비율 자동 조절 */
-}
-        
-        /* 설명 문구 스타일 */
-        .description {
-            font-size: 1.4rem; /* 폰트 크기 */
-            font-weight: 700; /* Gaegu 폰트 굵게 */
-            line-height: 1.6; /* 줄 간격 */
-            margin-bottom: 2.5rem; /* 설명 문구와 버튼 사이 여백 */
-        }
-
-        /* 클릭 유도 버튼 (Call To Action) */
-        .cta-button {
-            /* 버튼 폰트는 가독성을 위해 Noto Sans KR 사용 */
-            font-family: 'Noto Sans KR', sans-serif;
-            font-weight: 900;
-            font-size: 1.1rem;
-            
-            /* 로고의 흰색을 사용하여 눈에 띄게 만듦 */
+        .logo-container {
+            width: 180px; height: 180px; border-radius: 50%;
             background-color: #ffffff;
-            /* 버튼 텍스트는 배경색과 동일하게 하여 통일감 부여 */
-            color: #0d5d37;
+            display: flex; justify-content: center; align-items: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 50vw; max-height: 50vw;
+        }
 
-            padding: 16px 35px;
-            border-radius: 50px; /* 동글동글한 알약 모양 */
-            text-decoration: none; /* 링크 밑줄 제거 */
-            
-            /* 입체감을 주는 그림자 효과 */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            
-            /* 부드러운 전환 효과 */
-            transition: all 0.2s ease-in-out;
+        .logo-image { width: 90%; height: auto; }
+        
+        .description {
+            font-size: 1.4rem; font-weight: 700;
+            line-height: 1.6; margin-bottom: 2.5rem;
+        }
+
+        /* --- 최종 코드 생성 버튼 스타일 --- */
+        
+        .final-cta-button {
+            display: block;
+            width: 350px;
+            max-width: 90%;
             cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        .final-cta-button:hover {
+            transform: scale(1.05);
+        }
+        .final-cta-button:active {
+            transform: scale(1);
         }
 
-        /* 마우스를 올렸을 때(PC) 버튼이 살짝 위로 올라가는 효과 */
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        /* [수정] SVG 내부 요소 스타일링 */
+        .button-fill {
+            fill: #ffffff;      /* 내부 흰색 채우기 */
+            stroke: #000000;    /* 중앙과 테두리 경계선 (얇은 검은선) */
+            stroke-width: 2;
+        }
+        .button-border {
+            fill: none;         /* 채우기 없음 */
+            stroke: #000000;    /* 테두리 검은색 */
+            stroke-width: 32;   /* 테두리 두께 */
+        }
+        .center-text {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 40px;
+            font-weight: 900;
+            fill: #000000;
+        }
+        .scrolling-text {
+            font-family: 'Gaegu', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            fill: #ffffff;      /* [핵심] 텍스트 색상을 흰색으로 변경 */
         }
 
-        /* 클릭(터치)했을 때 버튼이 눌리는 듯한 효과 (모바일에서 중요!) */
-        .cta-button:active {
-            transform: translateY(1px);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- 위에서 지정한 sagupang-logo.png 파일을 불러옵니다 -->
-        <img src="sagupang-logo.png" alt="사구팡 로고" class="logo">
+        <div class="logo-container">
+            <img src="sagupang-logo.png" alt="사구팡 로고" class="logo-image">
+        </div>
         
         <p class="description">
-            "삶의 질" 높이는<br>"오늘의 꿀템" 확인하세요!        </p>
+            "삶의 질" 높이는<br>"오늘의 꿀템" 확인하세요!
+        </p>
 
-        <a href="#" class="cta-button" onclick="openLinks(); return false;">
-            쿠팡추천 상품 보러가기
+        <a href="#" class="final-cta-button">
+            <svg viewBox="0 0 350 131">
+                <!-- SVG 렌더링 순서가 레이어 순서를 결정 (아래쪽 코드가 위로 올라옴) -->
+                
+                <!-- 1. 버튼 경로 정의 (재사용을 위해) -->
+                <defs>
+                    <path id="button-shape-path" d="M 284.5, 115 H 65.5 C 37.6, 115, 16, 91.4, 16, 65.5 S 37.6, 16, 65.5, 16 H 284.5 C 312.4, 16, 334, 37.6, 334, 65.5 S 312.4, 115, 284.5, 115 Z"/>
+                </defs>
+
+                <!-- 2. [Layer 1] 흰색 내부와 얇은 경계선 -->
+                <use href="#button-shape-path" class="button-fill"/>
+                
+                <!-- 3. [Layer 2] 두꺼운 검은색 테두리 -->
+                <use href="#button-shape-path" class="button-border"/>
+
+                <!-- 4. [Layer 3] 중앙 텍스트 -->
+                <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" class="center-text">
+                    추천 상품 보기
+                </text>
+                
+                <!-- 5. [Layer 4] 테두리 위를 움직이는 흰색 텍스트 -->
+                <text class="scrolling-text">
+                    <textPath href="#button-shape-path">
+                        ∙ 쿠팡창이 함께 열립니다 ∙ 쿠팡창이 함께 열립니다 ∙ 쿠팡창이 함께 열립니다 ∙ 쿠팡창이 함께 열립니다
+                        <animate attributeName="startOffset" from="100%" to="0%" dur="7s" begin="0s" repeatCount="indefinite"/>
+                    </textPath>
+                </text>
+            </svg>
         </a>
     </div>
 
     <script>
+        const ctaButton = document.querySelector('.final-cta-button');
+        ctaButton.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            openLinks();
+        });
         function openLinks() {
             window.open('https://link.inpock.co.kr/49upang', '_blank');
             setTimeout(function() {
@@ -135,4 +140,5 @@
     </script>
 </body>
 </html>
+
 
